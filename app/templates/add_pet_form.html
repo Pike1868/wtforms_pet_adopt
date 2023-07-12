@@ -1,0 +1,22 @@
+{%extends "base.html"%}
+
+{% block content %}
+<div class="mx-5">
+    <h1>Add a new pet</h1>
+    <form action="/add" method="POST">
+        {{ form.hidden_tag() }}
+        {% for field in form if field.widget.input_type != 'hidden' %}
+        <div class="form-group">
+            {{field.label}}
+            {% if field.type == "BooleanField" %}
+            {{field(class_="form-check-input")}}
+            {% else %}
+            {{field(class_="form-control")}}
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button class="btn btn-success my-3">Add</button>
+    </form>
+</div>
+
+{% endblock %}
